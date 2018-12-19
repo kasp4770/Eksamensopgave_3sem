@@ -1,0 +1,84 @@
+<h2 id="overskrift">{{title}}</h2>
+
+<table class="table">
+    <tr>
+        <th>Navn</th>
+        <th>Hjemmehavn</th>
+        <th>Kaldesignal</th>
+        <th>Unikt MMSI-nummer</th>
+        <th>Anvendelse</th>
+        <th>BRT/BT</th>
+        <th>Længde</th>
+        <th>Maks antal ombord</th>
+    </tr>
+
+    <tr>
+        <td>DUMMY</td>
+        <td>Korsør</td>
+        <td>KOGL</td>
+        <td>257649222</td>
+        <td>Skibet anvendes som vagt for at holde GREENPEACE på afstand</td>
+        <td>35</td>
+        <td>15.2</td>
+        <td>20</td>
+    </tr>
+    {{#each ship}}
+    <tr>
+        <td>{{name}}</td>
+        <td>{{homeCity}}</td>
+        <td>{{callSign}}</td>
+        <td>{{uniqMMSI}}</td>
+        <td>{{usedAs}}</td>
+        <td>{{brtbt}}</td>
+        <td>{{length}}</td>
+        <td>{{maxCrewNo}}</td>
+        <td>
+            <form action="/ships/{{_id}}" method="GET">
+                <input type="hidden" name="id" value="{{this._id}}">
+                <input type="submit" value="Vis">
+            </form>
+        </td>
+    </tr>
+    {{/each}}
+
+</table>
+
+<h2>Opret skib</h2>
+
+<form class="form" action="/ships" method="POST">
+    <div class="form">
+        <label for="name">Navn: </label>
+        <input type="text" name="name" required>
+    </div>
+    <div class="form">
+        <label for="homeCity">Hjemmehavn: </label>
+        <input type="text" name="homeCity" required>
+    </div>
+    <div class="form">
+        <label for="callSign">Kaldesignal: </label>
+        <input type="text" name="callSign" required>
+    </div>
+    <div class="form">
+        <label for="mmsi">MMSI: </label>
+        <input type="number" name="mmsi" required>
+    </div>
+    <div class="form">
+        <label for="usedAs">Anvendelse: </label>
+        <input type="text" name="usedAs" required>
+    </div>
+    <div class="form">
+        <label for="brtbt">BRT/BT; </label>
+        <input type="number" name="brtbt" required>
+    </div>
+    <div class="form">
+        <label for="length">Længde: </label>
+        <input type="number" name="length" required>
+    </div>
+    <div class="form">
+        <label for="maxCrewNo">Maks antal ombord: </label>
+        <input type="number" name="maxCrewNo" required>
+    </div>
+    <div class="form">
+        <input type="submit" value="Opret skib">
+    </div>
+</form>
